@@ -28,7 +28,7 @@ test("аргументы конечные, типа number, != NAN", () => {
   expect(() => solve("1", 1, 1)).toThrow();
   expect(() => solve(1, "1", 1)).toThrow();
   expect(() => solve(1, 1, "1")).toThrow();
-  expect(() => solve("num", 1, 1)).toThrow();
-  expect(() => solve(1, "num", 1)).toThrow();
-  expect(() => solve(1, 1, "num")).toThrow();
+  expect(() => solve(NaN, 1, 1)).toThrow();
+  expect(() => solve(1, NaN, 1)).toThrow();
+  expect(() => solve(1, 1, NaN)).toThrow();
 });
