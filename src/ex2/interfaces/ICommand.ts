@@ -1,4 +1,4 @@
-import { IMovingGameEntity, IRotatingGameEntity } from "./GameEntity";
+import { IMovingGameEntity, IRotatingGameEntity } from "../GameEntity";
 
 export interface ICommand {
   execute: () => void;
@@ -21,6 +21,11 @@ export class CommandMoveLinear implements ICommand {
   }
 }
 
+/**
+ * пока что объект представлен в виде положения в пространстве и скорости,
+ * поэтому вращение есть смысл производить только в контексте поворота направления движения,
+ * то есть поворачивать вектор скорости
+ */
 export class CommandRotateVelocity implements ICommand {
   entity: IRotatingGameEntity | null = null;
   rotateVelocity(gameEnt: IRotatingGameEntity) {

@@ -1,4 +1,4 @@
-import { CommandMoveLinear } from "../Command";
+import { CommandMoveLinear } from "../interfaces/ICommand";
 import { MovableGameEntity } from "../GameEntity";
 import { Vector2 } from "../interfaces/IVector";
 import { VelocityVec } from "../interfaces/IVelocity";

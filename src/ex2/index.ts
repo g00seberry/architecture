@@ -1,4 +1,7 @@
-import { CommandMoveLinear, CommandRotateVelocity } from "./Command";
+import {
+  CommandMoveLinear,
+  CommandRotateVelocity,
+} from "./interfaces/ICommand";
 import { MovableGameEntity, RotatebleGameEntity } from "./GameEntity";
 import { degrees2Radians } from "./utils";
 import { Vector2 } from "./interfaces/IVector";

@@ -2,11 +2,6 @@ import { degrees2Radians } from "../utils";
 import { Vector2 } from "./IVector";
 import { IVelocity, Velocity2D, VelocityVec } from "./IVelocity";
 
-/**
- * пока что объект представлен в виде положения в пространстве и скорости,
- * поэтому вращение есть смысл производить только в контексте поворота направления движения,
- * то есть поворачивать вектор скорости
- */
 export interface IRotationVelocity {
   rotate(velocity: IVelocity): IVelocity;
 }
