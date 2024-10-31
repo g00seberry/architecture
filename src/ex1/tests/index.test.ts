@@ -1,4 +1,5 @@
-const { EPS, solve } = require("../index");
+import { solve } from "..";
+import { EPS } from "../../utils/utils";
 
 test("x^2+1 = 0 корней нет", () => {
   expect(solve(1, 0, 1)).toEqual([]);
@@ -25,9 +26,9 @@ test("аргументы конечные, типа number, != NAN", () => {
   expect(() => solve(Infinity, 1, 1)).toThrow();
   expect(() => solve(1, Infinity, 1)).toThrow();
   expect(() => solve(1, 1, Infinity)).toThrow();
-  expect(() => solve("1", 1, 1)).toThrow();
-  expect(() => solve(1, "1", 1)).toThrow();
-  expect(() => solve(1, 1, "1")).toThrow();
+  expect(() => solve("1" as unknown as number, 1, 1)).toThrow();
+  expect(() => solve(1, "1" as unknown as number, 1)).toThrow();
+  expect(() => solve(1, 1, "1" as unknown as number)).toThrow();
   expect(() => solve(NaN, 1, 1)).toThrow();
   expect(() => solve(1, NaN, 1)).toThrow();
   expect(() => solve(1, 1, NaN)).toThrow();
