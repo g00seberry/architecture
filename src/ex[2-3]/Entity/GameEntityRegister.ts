@@ -25,6 +25,4 @@ export class GameEntityRegisterList implements IGameEntityRegister {
   }
 }
 
-const entityRegister: IGameEntityRegister = new GameEntityRegisterList();
-
-export const getEntityRegister = () => entityRegister;
+export const getEntityRegister = () => new GameEntityRegisterList();

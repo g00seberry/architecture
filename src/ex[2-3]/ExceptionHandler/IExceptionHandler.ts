@@ -1,8 +1,9 @@
 export interface IExceptionHandlerContext {
+  err: Error;
   getCtx(): unknown;
 }
 export type ExceptionHandlerFn = (ctx: IExceptionHandlerContext) => void;
 export interface IExceptionHandler {
   register(key: string, cb: ExceptionHandlerFn): void;
-  handle(key: string, ctx: IExceptionHandlerContext): void;
+  handle(ctx: IExceptionHandlerContext): void;
 }

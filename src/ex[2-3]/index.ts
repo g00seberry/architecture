@@ -1,13 +1,10 @@
-import {
-  getExceptionHadlerCmd,
-  makeExceptionHadlerContextCmd,
-} from "./exceptions";
-import { makeExceptionHandlerCmdKey } from "./exceptions/getExceptionHandlerCmd";
+import { getExceptionHadlerCmd } from "./exceptions";
 import { getCommandQueue } from "./Command/CommandQueue";
 import { CoreCmd, getCoreCmd } from "./Core/CoreCmd";
 import { getEntityRegister } from "./Entity/GameEntityRegister";
-import { configExceptionHandler } from "./commands/common";
+import { configExceptionHandler } from "./commands/configExceptionHandler";
 import { seedTestData } from "./seedTestData";
+import { makeExceptionHadlerContextCmd } from "./exceptions/ExceptionHandlerCmd";
 
 const gameLoop = (core: CoreCmd) => {
   const { cmdExceptionHandler, cmdQueue } = core.config;
@@ -16,14 +13,7 @@ const gameLoop = (core: CoreCmd) => {
     try {
       cmd.execute();
     } catch (error) {
-      const exceptionKey = makeExceptionHandlerCmdKey(
-        cmd.constructor.name,
-        error.type
-      );
-      cmdExceptionHandler.handle(
-        exceptionKey,
-        makeExceptionHadlerContextCmd(cmd, error)
-      );
+      cmdExceptionHandler.handle(makeExceptionHadlerContextCmd(cmd, error));
     }
   }
 };

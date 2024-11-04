@@ -5,10 +5,16 @@ import {
   IExceptionHandlerContext,
   ExceptionHandlerFn,
 } from "../ExceptionHandler/IExceptionHandler";
+import { makeExceptionHandlerCmdKey } from "./getExceptionHandlerCmd";
+
+export const makeExceptionHadlerContextCmd = (
+  newCmd: ICommand,
+  newErr: IExceptionBase
+) => new ExceptionHandlerContextCmd(newCmd, newErr);
 
 export class ExceptionHandlerContextCmd implements IExceptionHandlerContext {
-  private cmd: ICommand;
-  private err: IExceptionBase;
+  cmd: ICommand;
+  err: IExceptionBase;
   constructor(newCmd: ICommand, newErr: IExceptionBase) {
     this.cmd = newCmd;
     this.err = newErr;
@@ -22,7 +28,9 @@ export class ExceptionHandlerContextCmd implements IExceptionHandlerContext {
 export class ExceptionHandlerCmd implements IExceptionHandler {
   // пока что пусть будет один обработчик на исключение
   handlers: Map<string, ExceptionHandlerFn> = new Map();
-  handle(key: string, ctx: IExceptionHandlerContext): void {
+  handle(ctx: ExceptionHandlerContextCmd): void {
+    const { cmd, err } = ctx.getCtx();
+    const key = makeExceptionHandlerCmdKey(cmd.constructor.name, err.type);
     const handler = this.handlers.get(key);
     // должно быть исклчение или дефолтная обработка ?
     handler?.(ctx);

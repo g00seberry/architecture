@@ -10,7 +10,7 @@ export const enqueueLogOnFail =
     cmdQueue.enqueue(new CommandLog().log(ctx.getCtx()));
   };
 
-// повторяет один раз, чтобы не было зацикливания
+// повторяет команду
 export const repeatOnFail =
   (core: CoreCmd): ExceptionHandlerFn =>
   (ctx: ExceptionHandlerContextCmd) => {
@@ -18,7 +18,7 @@ export const repeatOnFail =
     cmdQueue.enqueue(ctx.getCtx().cmd);
   };
 
-// повторяет один раз, чтобы не было зацикливания
+// повторяет один раз
 export const repeatOnceOnFail = (core: CoreCmd): ExceptionHandlerFn => {
   let counter = 0;
   return () => {
@@ -28,6 +28,7 @@ export const repeatOnceOnFail = (core: CoreCmd): ExceptionHandlerFn => {
   };
 };
 
+// повторяет один раз и пишев в лог, если ошибка сохранилась
 export const repeatOnceAndLogIfStillWrong = (
   core: CoreCmd
 ): ExceptionHandlerFn => {

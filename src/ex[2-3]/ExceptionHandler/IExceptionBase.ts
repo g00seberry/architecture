@@ -1,3 +1,3 @@
-export interface IExceptionBase {
-  getType(): string;
+export interface IExceptionBase extends Error {
+  readonly type: string;
 }

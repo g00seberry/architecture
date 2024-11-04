@@ -4,5 +4,5 @@ export {
 } from "./ExceptionHandlerCmd";
 export {
   getExceptionHadlerCmd,
-  makeExceptionHadlerContextCmd,
+  makeExceptionHandlerCmdKey,
 } from "./getExceptionHandlerCmd";

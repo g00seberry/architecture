@@ -19,5 +19,4 @@ export class CommandQueue implements IQueue<ICommand> {
   }
 }
 
-const commandQueue: IQueue<ICommand> = new CommandQueue();
-export const getCommandQueue = () => commandQueue;
+export const getCommandQueue = () => new CommandQueue();
