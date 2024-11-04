@@ -1,12 +1,12 @@
 import { isAbout, isZero } from "../../utils/utils";
-import { CommandRotateVelocity } from "../interfaces/ICommand";
-import { RotatebleGameEntity } from "../GameEntity";
+import { CommandRotateVelocity } from "../commands";
+import { RotatableGameEntity } from "../Entity/GameEntity";
 import { RotationVelocity2D } from "../interfaces/IRotationVelocity";
 import { Velocity2D } from "../interfaces/IVelocity";
 
 const rotateVelocityCommand = new CommandRotateVelocity();
 test("После поворота на 90 градусов вектор скорости (1,0) === (0,1)", () => {
-  const ent = new RotatebleGameEntity(
+  const ent = new RotatableGameEntity(
     new RotationVelocity2D([90]),
     new Velocity2D(1, 0)
   );
@@ -17,7 +17,7 @@ test("После поворота на 90 градусов вектор скор
 });
 
 test("Попытка сдвинуть объект, у которого невозможно прочитать значение поворота, приводит к ошибке", () => {
-  const ent = new RotatebleGameEntity(
+  const ent = new RotatableGameEntity(
     new RotationVelocity2D([90]),
     new Velocity2D(1, 0)
   );
@@ -27,7 +27,7 @@ test("Попытка сдвинуть объект, у которого нево
   }).toThrow();
 });
 test("Попытка сдвинуть объект, у которого невозможно прочитать значение мгновенной скорости, приводит к ошибке", () => {
-  const ent = new RotatebleGameEntity(
+  const ent = new RotatableGameEntity(
     new RotationVelocity2D([90]),
     new Velocity2D(1, 0)
   );

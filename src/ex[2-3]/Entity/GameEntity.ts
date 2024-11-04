@@ -1,17 +1,17 @@
-import { IRotationVelocity } from "./interfaces/IRotationVelocity";
-import { IVector, Vector2 } from "./interfaces/IVector";
-import { IVelocity } from "./interfaces/IVelocity";
+import { IRotationVelocity } from "../interfaces/IRotationVelocity";
+import { IVector } from "../interfaces/IVector";
+import { IVelocity } from "../interfaces/IVelocity";
 
 export type GameEntity<T extends Object = {}> = {
   [K in keyof T]: T[K];
 };
 
-export interface IMovingGameEntity {
+type MovingGameEntityDef = {
   location: IVector;
   setLocation(newLocation: IVector): void;
   velocity: IVelocity;
-}
-export class MovableGameEntity implements GameEntity<IMovingGameEntity> {
+};
+export class MovableGameEntity implements GameEntity<MovingGameEntityDef> {
   location: IVector;
   setLocation(newLocation: IVector): void {
     this.location = newLocation;
@@ -23,13 +23,13 @@ export class MovableGameEntity implements GameEntity<IMovingGameEntity> {
   }
 }
 
-export interface IRotatingGameEntity {
+type RotatingGameEntityDef = {
   rotationVelocity: IRotationVelocity;
   setRotationVelocity(newLocation: IRotationVelocity): void;
   velocity: IVelocity;
   setVelocity(newVelocity: IVelocity): void;
-}
-export class RotatebleGameEntity implements GameEntity<IRotatingGameEntity> {
+};
+export class RotatableGameEntity implements GameEntity<RotatingGameEntityDef> {
   rotationVelocity: IRotationVelocity;
   setRotationVelocity(newRotation: IRotationVelocity): void {
     this.rotationVelocity = newRotation;
