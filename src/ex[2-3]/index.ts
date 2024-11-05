@@ -1,10 +1,10 @@
-import { getExceptionHadlerCmd } from "./exceptions";
+import { getExceptionHadlerCmd } from "./ExceptionHandlerCmd";
 import { getCommandQueue } from "./Command/CommandQueue";
 import { CoreCmd, getCoreCmd } from "./Core/CoreCmd";
 import { getEntityRegister } from "./Entity/GameEntityRegister";
 import { configExceptionHandler } from "./commands/configExceptionHandler";
 import { seedTestData } from "./seedTestData";
-import { makeExceptionHadlerContextCmd } from "./exceptions/ExceptionHandlerCmd";
+import { makeExceptionHadlerContextCmd } from "./ExceptionHandlerCmd/ExceptionHandlerCmd";
 
 const gameLoop = (core: CoreCmd) => {
   const { cmdExceptionHandler, cmdQueue } = core.config;

@@ -1,6 +1,9 @@
 import { GameEntity, RotatableGameEntity } from "../Entity/GameEntity";
 import { ICommand } from "../Command";
-import { ExceptionCmdType, makeExceptionCmd } from "../exceptions/ExceptionCmd";
+import {
+  ExceptionCmdType,
+  makeExceptionCmd,
+} from "../ExceptionHandlerCmd/ExceptionCmd";
 
 /**
  * пока что объект представлен в виде положения в пространстве и скорости,

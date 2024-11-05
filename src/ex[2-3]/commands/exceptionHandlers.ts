@@ -1,14 +1,15 @@
 import { CoreCmd } from "../Core/CoreCmd";
-import { ExceptionHandlerFn } from "../ExceptionHandler/IExceptionHandler";
-import { ExceptionHandlerContextCmd } from "../exceptions";
+import { ExceptionHandlerFn } from "../IExceptionHandler/IExceptionHandler";
+import { ExceptionHandlerContextCmd } from "../ExceptionHandlerCmd";
 import { CommandLog, CommandRepeat } from "./common";
+import { SimpleLogger } from "./common/CommandLog";
 
 // 5.Реализовать обработчик исключения, который ставит Команду, пишущую в лог в очередь Команд.
 export const enqueueLogOnFail =
   (core: CoreCmd): ExceptionHandlerFn =>
   (ctx) => {
     const { cmdQueue } = core.config;
-    cmdQueue.enqueue(new CommandLog().log(ctx.getCtx()));
+    cmdQueue.enqueue(new CommandLog(new SimpleLogger()).log(ctx.getCtx()));
   };
 
 // Реализовать обработчик исключения, который ставит в очередь Команду - повторитель команды, выбросившей исключение.
@@ -16,7 +17,7 @@ export const enqueueRepeatOnFail =
   (core: CoreCmd): ExceptionHandlerFn =>
   (ctx: ExceptionHandlerContextCmd) => {
     const { cmdQueue } = core.config;
-    cmdQueue.enqueue(new CommandRepeat().repeat(ctx.getCtx().cmd));
+    cmdQueue.enqueue(new CommandRepeat().repeat(ctx.getCtx().cmd, core));
   };
 
 /**
@@ -28,12 +29,11 @@ export const trySomeTimesAndLog = (
   core: CoreCmd,
   times: number
 ): ExceptionHandlerFn => {
-  let counter = 1;
+  let counter = 0;
   return (ctx) => {
     if (counter < times) {
       enqueueRepeatOnFail(core)(ctx);
-    } else if (counter === times - 1) {
-      enqueueRepeatOnFail(core)(ctx);
+    } else if (counter === times) {
       enqueueLogOnFail(core)(ctx);
     }
     counter++;

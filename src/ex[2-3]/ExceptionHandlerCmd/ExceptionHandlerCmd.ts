@@ -1,10 +1,10 @@
 import { ICommand } from "../Command";
-import { IExceptionHandler } from "../ExceptionHandler";
-import { IExceptionBase } from "../ExceptionHandler/IExceptionBase";
+import { IExceptionHandler } from "../IExceptionHandler";
+import { IExceptionBase } from "../IExceptionHandler/IExceptionBase";
 import {
   IExceptionHandlerContext,
   ExceptionHandlerFn,
-} from "../ExceptionHandler/IExceptionHandler";
+} from "../IExceptionHandler/IExceptionHandler";
 import { makeExceptionHandlerCmdKey } from "./getExceptionHandlerCmd";
 
 export class ExceptionHandlerContextCmd implements IExceptionHandlerContext {

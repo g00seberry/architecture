@@ -1,11 +1,14 @@
 import { GameEntity, MovableGameEntity } from "../Entity/GameEntity";
 import { ICommand } from "../Command";
-import { ExceptionCmdType, makeExceptionCmd } from "../exceptions/ExceptionCmd";
+import {
+  ExceptionCmdType,
+  makeExceptionCmd,
+} from "../ExceptionHandlerCmd/ExceptionCmd";
 
 export class CommandMoveLinear implements ICommand {
   entity: GameEntity | null = null;
   moveLinear(gameEnt: GameEntity) {
-    // this.entity = gameEnt;
+    this.entity = gameEnt;
     return this;
   }
   execute() {

@@ -1,6 +1,6 @@
 import { IQueue, ICommand } from "../Command";
 import { IGameEntityRegister } from "../Entity/GameEntityRegister";
-import { IExceptionHandler } from "../ExceptionHandler";
+import { IExceptionHandler } from "../IExceptionHandler";
 
 export type CoreStatus = "ready" | "fail" | "wait" | "created";
 
