@@ -1,5 +1,5 @@
 import { GameEntity, MovableGameEntity } from "../Entity/GameEntity";
-import { ICommand } from "../Command/ICommand";
+import { ICommand } from "../Command";
 import { ExceptionCmdType, makeExceptionCmd } from "../exceptions/ExceptionCmd";
 
 export class CommandMoveLinear implements ICommand {

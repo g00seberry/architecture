@@ -1,4 +1,4 @@
-import { ICommand } from "../Command/ICommand";
+import { ICommand } from "../Command";
 import { IExceptionHandler } from "../ExceptionHandler";
 import { IExceptionBase } from "../ExceptionHandler/IExceptionBase";
 import {

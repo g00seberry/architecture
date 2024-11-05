@@ -1,4 +1,4 @@
-import { ICommand } from "../Command/ICommand";
+import { ICommand } from "../../Command/ICommand";
 
 export class CommandRepeat implements ICommand {
   cmd: ICommand;

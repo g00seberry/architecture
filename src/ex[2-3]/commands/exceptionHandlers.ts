@@ -1,8 +1,7 @@
 import { CoreCmd } from "../Core/CoreCmd";
 import { ExceptionHandlerFn } from "../ExceptionHandler/IExceptionHandler";
 import { ExceptionHandlerContextCmd } from "../exceptions";
-import { CommandLog } from "./CommandLog";
-import { CommandRepeat } from "./CommandRepeat";
+import { CommandLog, CommandRepeat } from "./common";
 
 // 5.Реализовать обработчик исключения, который ставит Команду, пишущую в лог в очередь Команд.
 export const enqueueLogOnFail =
@@ -13,31 +12,26 @@ export const enqueueLogOnFail =
   };
 
 // Реализовать обработчик исключения, который ставит в очередь Команду - повторитель команды, выбросившей исключение.
-export const repeatOnFail =
+export const enqueueRepeatOnFail =
   (core: CoreCmd): ExceptionHandlerFn =>
   (ctx: ExceptionHandlerContextCmd) => {
     const { cmdQueue } = core.config;
     cmdQueue.enqueue(new CommandRepeat().repeat(ctx.getCtx().cmd));
   };
 
-// повторяет один раз
-export const repeatOnceOnFail = (core: CoreCmd): ExceptionHandlerFn => {
-  let counter = 0;
-  return () => {
-    if (counter > 0) return;
-    counter++;
-    return repeatOnFail(core);
-  };
-};
-
-// повторяет один раз и пишев в лог, если ошибка сохранилась
-export const repeatOnceAndLogIfStillWrong = (
-  core: CoreCmd
+/**
+ * 8.С помощью Команд из пункта 4 и пункта 6 реализовать следующую обработку исключений:
+ * при первом выбросе исключения повторить команду, при повторном выбросе исключения записать информацию в лог.
+ * 9.Реализовать стратегию обработки исключения - повторить два раза, потом записать в лог.
+ */
+export const trySomeTimesAndLog = (
+  core: CoreCmd,
+  times: number
 ): ExceptionHandlerFn => {
   let counter = 0;
   return () => {
-    if (counter === 0) return repeatOnFail(core);
-    if (counter === 1) return enqueueLogOnFail(core);
+    if (counter < times) return enqueueRepeatOnFail(core);
+    if (counter === times - 1) return enqueueLogOnFail(core);
     counter++;
   };
 };

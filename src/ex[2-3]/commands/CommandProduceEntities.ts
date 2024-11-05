@@ -1,5 +1,5 @@
 import { GameEntity } from "../Entity/GameEntity";
-import { ICommand } from "../Command/ICommand";
+import { ICommand } from "../Command";
 import { IGameEntityRegister } from "../Entity/GameEntityRegister";
 import { IFactory } from "../Entity/factories";
 import { ExceptionCmdType, makeExceptionCmd } from "../exceptions/ExceptionCmd";
