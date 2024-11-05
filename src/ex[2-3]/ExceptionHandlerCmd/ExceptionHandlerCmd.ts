@@ -18,6 +18,10 @@ export class ExceptionHandlerContextCmd implements IExceptionHandlerContext {
     const { cmd, err } = this;
     return { cmd, err };
   }
+  getKey() {
+    const { cmd, err } = this;
+    return makeExceptionHandlerCmdKey(cmd.constructor.name, err.type);
+  }
 }
 
 export const makeExceptionHadlerContextCmd = (
@@ -29,8 +33,7 @@ export class ExceptionHandlerCmd implements IExceptionHandler {
   // пока что пусть будет один обработчик на исключение
   handlers: Map<string, ExceptionHandlerFn> = new Map();
   handle(ctx: ExceptionHandlerContextCmd): void {
-    const { cmd, err } = ctx.getCtx();
-    const key = makeExceptionHandlerCmdKey(cmd.constructor.name, err.type);
+    const key = ctx.getKey();
     const handler = this.handlers.get(key);
     // должно быть исклчение или дефолтная обработка ?
     handler?.(ctx);
