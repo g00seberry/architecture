@@ -28,10 +28,14 @@ export const trySomeTimesAndLog = (
   core: CoreCmd,
   times: number
 ): ExceptionHandlerFn => {
-  let counter = 0;
-  return () => {
-    if (counter < times) return enqueueRepeatOnFail(core);
-    if (counter === times - 1) return enqueueLogOnFail(core);
+  let counter = 1;
+  return (ctx) => {
+    if (counter < times) {
+      enqueueRepeatOnFail(core)(ctx);
+    } else if (counter === times - 1) {
+      enqueueRepeatOnFail(core)(ctx);
+      enqueueLogOnFail(core)(ctx);
+    }
     counter++;
   };
 };

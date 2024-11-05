@@ -28,6 +28,6 @@ export const configExceptionHandler = (core: CoreCmd) => {
       CommandProduceEntities.name,
       ExceptionCmdType["unconsistent data"]
     ),
-    trySomeTimesAndLog(core, 2)
+    trySomeTimesAndLog(core, 3)
   );
 };

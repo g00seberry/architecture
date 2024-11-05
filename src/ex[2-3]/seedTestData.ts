@@ -51,8 +51,7 @@ export const seedTestData = (core: CoreCmd) => {
     .list()
     .filter((e) => e instanceof MovableGameEntity)
     .filter(Boolean)
-    .map((e) => new CommandMoveLinear().moveLinear(e))
-    .forEach((e) => cmdQueue.enqueue(e));
+    .forEach((e) => cmdQueue.enqueue(new CommandMoveLinear().moveLinear(e)));
 
   /**
    * достанем сущности, которые можно поворачивать из регистра и повернем
@@ -61,6 +60,7 @@ export const seedTestData = (core: CoreCmd) => {
     .list()
     .filter((e) => e instanceof RotatableGameEntity)
     .filter(Boolean)
-    .map((e) => new CommandRotateVelocity().rotateVelocity(e))
-    .forEach((e) => cmdQueue.enqueue(e));
+    .forEach((e) =>
+      cmdQueue.enqueue(new CommandRotateVelocity().rotateVelocity(e))
+    );
 };
