@@ -32,10 +32,8 @@ const gameLoopStep = (core: CoreCmd) => {
   const { cmdExceptionHandler, cmdQueue } = core.config;
   const cmd = cmdQueue.dequeue();
   try {
-    console.log(cmd);
     cmd.execute();
   } catch (error) {
-    console.log(cmd);
     cmdExceptionHandler.handle(makeExceptionHadlerContextCmd(cmd, error));
   }
 };

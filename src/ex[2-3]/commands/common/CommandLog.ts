@@ -9,7 +9,7 @@ export class SimpleLogger implements ILogger {
   log(data: unknown): void {
     const strData = JSON.stringify(data);
     this.logReg.push(strData);
-    console.log("CommandLog:", strData);
+    console.log("SimpleLogger:", strData);
   }
 }
 
