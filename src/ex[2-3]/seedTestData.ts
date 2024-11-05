@@ -8,7 +8,7 @@ import {
   FactoryMovableEntity,
   FactoryRotatableEntity,
 } from "./Entity/factories";
-import { MovableGameEntity, RotatableGameEntity } from "./Entity/GameEntity";
+import { MovableGameEntity, RotatableGameEntity } from "./Entity";
 import {
   RotationVelocity2D,
   RotationVelocityVec,

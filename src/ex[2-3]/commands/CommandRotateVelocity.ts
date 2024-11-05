@@ -1,4 +1,4 @@
-import { GameEntity, RotatableGameEntity } from "../Entity/GameEntity";
+import { GameEntity, RotatableGameEntity } from "../Entity";
 import { ICommand } from "../Command";
 import {
   ExceptionCmdType,

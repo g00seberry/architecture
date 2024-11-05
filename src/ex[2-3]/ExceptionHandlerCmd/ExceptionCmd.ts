@@ -2,6 +2,7 @@ import { IExceptionBase } from "../IExceptionHandler";
 
 export enum ExceptionCmdType {
   "unconsistent data" = "unconsistent data",
+  "fuel is expended" = "fuel is expended",
 }
 
 export class ExceptionCmd extends Error implements IExceptionBase {
