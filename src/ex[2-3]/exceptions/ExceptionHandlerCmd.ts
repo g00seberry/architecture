@@ -7,11 +7,6 @@ import {
 } from "../ExceptionHandler/IExceptionHandler";
 import { makeExceptionHandlerCmdKey } from "./getExceptionHandlerCmd";
 
-export const makeExceptionHadlerContextCmd = (
-  newCmd: ICommand,
-  newErr: IExceptionBase
-) => new ExceptionHandlerContextCmd(newCmd, newErr);
-
 export class ExceptionHandlerContextCmd implements IExceptionHandlerContext {
   cmd: ICommand;
   err: IExceptionBase;
@@ -24,6 +19,11 @@ export class ExceptionHandlerContextCmd implements IExceptionHandlerContext {
     return { cmd, err };
   }
 }
+
+export const makeExceptionHadlerContextCmd = (
+  newCmd: ICommand,
+  newErr: IExceptionBase
+) => new ExceptionHandlerContextCmd(newCmd, newErr);
 
 export class ExceptionHandlerCmd implements IExceptionHandler {
   // пока что пусть будет один обработчик на исключение

@@ -1,5 +1,4 @@
 import {
-  CommandFilterAndExecute,
   CommandMoveLinear,
   CommandProduceEntities,
   CommandRotateVelocity,
@@ -48,25 +47,20 @@ export const seedTestData = (core: CoreCmd) => {
   /**
    * достанем сущности, которые можно двигать из регистра и двинем
    */
-  cmdQueue.enqueue(
-    new CommandFilterAndExecute().filterAndExecute(
-      entityRegister.list(),
-      (list) =>
-        list
-          .filter((e) => e instanceof MovableGameEntity)
-          .map((e) => new CommandMoveLinear().moveLinear(e))
-    )
-  );
+  entityRegister
+    .list()
+    .filter((e) => e instanceof MovableGameEntity)
+    .filter(Boolean)
+    .map((e) => new CommandMoveLinear().moveLinear(e))
+    .forEach((e) => cmdQueue.enqueue(e));
+
   /**
    * достанем сущности, которые можно поворачивать из регистра и повернем
    */
-  cmdQueue.enqueue(
-    new CommandFilterAndExecute().filterAndExecute(
-      entityRegister.list(),
-      (list) =>
-        list
-          .filter((e) => e instanceof RotatableGameEntity)
-          .map((e) => new CommandRotateVelocity().rotateVelocity(e))
-    )
-  );
+  entityRegister
+    .list()
+    .filter((e) => e instanceof RotatableGameEntity)
+    .filter(Boolean)
+    .map((e) => new CommandRotateVelocity().rotateVelocity(e))
+    .forEach((e) => cmdQueue.enqueue(e));
 };

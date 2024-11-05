@@ -2,7 +2,9 @@ import { CoreCmd } from "../Core/CoreCmd";
 import { ExceptionHandlerFn } from "../ExceptionHandler/IExceptionHandler";
 import { ExceptionHandlerContextCmd } from "../exceptions";
 import { CommandLog } from "./CommandLog";
+import { CommandRepeat } from "./CommandRepeat";
 
+// 5.Реализовать обработчик исключения, который ставит Команду, пишущую в лог в очередь Команд.
 export const enqueueLogOnFail =
   (core: CoreCmd): ExceptionHandlerFn =>
   (ctx) => {
@@ -10,12 +12,12 @@ export const enqueueLogOnFail =
     cmdQueue.enqueue(new CommandLog().log(ctx.getCtx()));
   };
 
-// повторяет команду
+// Реализовать обработчик исключения, который ставит в очередь Команду - повторитель команды, выбросившей исключение.
 export const repeatOnFail =
   (core: CoreCmd): ExceptionHandlerFn =>
   (ctx: ExceptionHandlerContextCmd) => {
     const { cmdQueue } = core.config;
-    cmdQueue.enqueue(ctx.getCtx().cmd);
+    cmdQueue.enqueue(new CommandRepeat().repeat(ctx.getCtx().cmd));
   };
 
 // повторяет один раз
