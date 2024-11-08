@@ -8,7 +8,7 @@ import { WithFuelGameEntity } from "../../Entity/WithFuelGameEntity";
 
 export class CommandBurnFuel implements ICommand {
   entity: GameEntity | null = null;
-  checkFuel(gameEnt: GameEntity) {
+  burnFuel(gameEnt: GameEntity) {
     this.entity = gameEnt;
     return this;
   }

@@ -18,8 +18,8 @@ import {
   makeExceptionCmd,
 } from "../ExceptionHandlerCmd/ExceptionCmd";
 import { makeExceptionHadlerContextCmd } from "../ExceptionHandlerCmd/ExceptionHandlerCmd";
-import { Vector2 } from "../interfaces/IVector";
-import { VelocityVec } from "../interfaces/IVelocity";
+import { Vector2 } from "../Core/IVector";
+import { VelocityVec } from "../Core/IVelocity";
 
 class CmdWithError implements ICommand {
   execute() {

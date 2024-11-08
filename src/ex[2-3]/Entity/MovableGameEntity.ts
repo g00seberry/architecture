@@ -1,5 +1,5 @@
-import { IVector } from "../interfaces/IVector";
-import { IVelocity } from "../interfaces/IVelocity";
+import { IVector } from "../Core/IVector";
+import { IVelocity } from "../Core/IVelocity";
 import { GameEntity } from "./GameEntity";
 
 type MovingGameEntityDef = {

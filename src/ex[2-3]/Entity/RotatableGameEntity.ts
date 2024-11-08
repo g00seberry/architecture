@@ -1,5 +1,5 @@
-import { IRotationVelocity } from "../interfaces/IRotationVelocity";
-import { IVelocity } from "../interfaces/IVelocity";
+import { IRotationVelocity } from "../Core/IRotationVelocity";
+import { IVelocity } from "../Core/IVelocity";
 import { GameEntity } from "./GameEntity";
 
 type RotatingGameEntityDef = {

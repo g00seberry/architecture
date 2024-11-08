@@ -1,8 +1,8 @@
 import { isAbout, isZero } from "../../utils/utils";
 import { CommandRotateVelocity } from "../common/commands";
+import { RotationVelocity2D } from "../Core/IRotationVelocity";
+import { Velocity2D } from "../Core/IVelocity";
 import { RotatableGameEntity } from "../Entity";
-import { RotationVelocity2D } from "../interfaces/IRotationVelocity";
-import { Velocity2D } from "../interfaces/IVelocity";
 
 const rotateVelocityCommand = new CommandRotateVelocity();
 test("После поворота на 90 градусов вектор скорости (1,0) === (0,1)", () => {
