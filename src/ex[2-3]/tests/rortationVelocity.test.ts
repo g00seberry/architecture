@@ -1,5 +1,5 @@
 import { isAbout, isZero } from "../../utils/utils";
-import { CommandRotateVelocity } from "../commands";
+import { CommandRotateVelocity } from "../common/commands";
 import { RotatableGameEntity } from "../Entity";
 import { RotationVelocity2D } from "../interfaces/IRotationVelocity";
 import { Velocity2D } from "../interfaces/IVelocity";

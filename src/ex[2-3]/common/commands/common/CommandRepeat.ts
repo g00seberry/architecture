@@ -1,5 +1,5 @@
-import { ICommand } from "../../Command/ICommand";
-import { CoreCmd } from "../../Core/CoreCmd";
+import { ICommand } from "../../../Core/Command/ICommand";
+import { CoreCmd } from "../../../Core/CoreCmd";
 
 export class CommandRepeat implements ICommand {
   cmd: ICommand;

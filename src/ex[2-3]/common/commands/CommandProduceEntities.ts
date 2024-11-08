@@ -1,11 +1,11 @@
-import { GameEntity } from "../Entity/GameEntity";
-import { ICommand } from "../Command";
-import { IGameEntityRegister } from "../Entity/GameEntityRegister";
-import { IFactory } from "../Entity/factories";
+import { GameEntity } from "../../Entity/GameEntity";
+import { ICommand } from "../../Core/Command";
+import { IGameEntityRegister } from "../../Entity/GameEntityRegister";
+import { IFactory } from "../../Entity/factories";
 import {
   ExceptionCmdType,
   makeExceptionCmd,
-} from "../ExceptionHandlerCmd/ExceptionCmd";
+} from "../../ExceptionHandlerCmd/ExceptionCmd";
 
 export class CommandProduceEntities implements ICommand {
   factory: IFactory<GameEntity[]> | null = null;

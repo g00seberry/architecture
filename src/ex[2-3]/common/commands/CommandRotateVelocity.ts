@@ -1,9 +1,9 @@
-import { GameEntity, RotatableGameEntity } from "../Entity";
-import { ICommand } from "../Command";
+import { GameEntity, RotatableGameEntity } from "../../Entity";
+import { ICommand } from "../../Core/Command";
 import {
   ExceptionCmdType,
   makeExceptionCmd,
-} from "../ExceptionHandlerCmd/ExceptionCmd";
+} from "../../ExceptionHandlerCmd/ExceptionCmd";
 
 /**
  * пока что объект представлен в виде положения в пространстве и скорости,
@@ -29,7 +29,11 @@ export class CommandRotateVelocity implements ICommand {
         ExceptionCmdType["unconsistent data"]
       );
     const { rotationVelocity: rotation, velocity } = this.entity;
-    if (!(rotation && velocity)) throw new Error("Wrong rotation or velocity.");
+    if (!(rotation && velocity))
+      throw makeExceptionCmd(
+        "Wrong rotation or velocity.",
+        ExceptionCmdType["unconsistent data"]
+      );
     this.entity.setVelocity(rotation.rotate(velocity));
   }
 }

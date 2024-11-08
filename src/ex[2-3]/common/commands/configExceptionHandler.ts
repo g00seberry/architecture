@@ -1,6 +1,6 @@
-import { CoreCmd } from "../Core/CoreCmd";
-import { ExceptionCmdType } from "../ExceptionHandlerCmd/ExceptionCmd";
-import { makeExceptionHandlerCmdKey } from "../ExceptionHandlerCmd/getExceptionHandlerCmd";
+import { CoreCmd } from "../../Core/CoreCmd";
+import { ExceptionCmdType } from "../../ExceptionHandlerCmd/ExceptionCmd";
+import { makeExceptionHandlerCmdKey } from "../../ExceptionHandlerCmd/getExceptionHandlerCmd";
 import { CommandMoveLinear } from "./CommandMoveLinear";
 import { CommandProduceEntities } from "./CommandProduceEntities";
 import { CommandRotateVelocity } from "./CommandRotateVelocity";

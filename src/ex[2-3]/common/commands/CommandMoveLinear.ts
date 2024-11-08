@@ -1,9 +1,9 @@
-import { GameEntity, MovableGameEntity } from "../Entity";
-import { ICommand } from "../Command";
+import { GameEntity, MovableGameEntity } from "../../Entity";
+import { ICommand } from "../../Core/Command";
 import {
   ExceptionCmdType,
   makeExceptionCmd,
-} from "../ExceptionHandlerCmd/ExceptionCmd";
+} from "../../ExceptionHandlerCmd/ExceptionCmd";
 
 export class CommandMoveLinear implements ICommand {
   entity: GameEntity | null = null;
@@ -14,7 +14,7 @@ export class CommandMoveLinear implements ICommand {
   execute() {
     if (!this.entity)
       throw makeExceptionCmd(
-        "Unconsistent data. Can`t perform CommandFilterAndExecute command.",
+        "Unconsistent data. Can`t perform CommandMoveLinear command.",
         ExceptionCmdType["unconsistent data"]
       );
     if (!(this.entity instanceof MovableGameEntity))
@@ -24,7 +24,12 @@ export class CommandMoveLinear implements ICommand {
       );
 
     const { location, velocity } = this.entity;
-    if (!(location && velocity)) throw new Error("Wrong location or velocity.");
+    if (!(location && velocity))
+      throw makeExceptionCmd(
+        "Wrong location or velocity.",
+        ExceptionCmdType["unconsistent data"]
+      );
+
     this.entity.setLocation(location.add(velocity.getVelocityVector()));
   }
 }

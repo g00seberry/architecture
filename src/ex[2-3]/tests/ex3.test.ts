@@ -1,12 +1,12 @@
-import { ICommand } from "../Command";
-import { CommandQueue, getCommandQueue } from "../Command/CommandQueue";
-import { CommandLog, CommandRepeat } from "../commands/common";
-import { SimpleLogger } from "../commands/common/CommandLog";
+import { ICommand } from "../Core/Command";
+import { CommandQueue, getCommandQueue } from "../Core/Command/CommandQueue";
+import { CommandLog, CommandRepeat } from "../common/commands/common";
+import { SimpleLogger } from "../common/commands/common/CommandLog";
 import {
   enqueueLogOnFail,
   enqueueRepeatOnFail,
   trySomeTimesAndLog,
-} from "../commands/exceptionHandlers";
+} from "../common/commands/exceptionHandlers";
 import { CoreCmd, getCoreCmd } from "../Core/CoreCmd";
 import { MovableGameEntity, getEntityRegister } from "../Entity/";
 import {

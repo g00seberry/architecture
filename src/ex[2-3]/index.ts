@@ -1,8 +1,8 @@
 import { getExceptionHadlerCmd } from "./ExceptionHandlerCmd";
-import { getCommandQueue } from "./Command/CommandQueue";
+import { getCommandQueue } from "./Core/Command/CommandQueue";
 import { CoreCmd, getCoreCmd } from "./Core/CoreCmd";
 import { getEntityRegister } from "./Entity/GameEntityRegister";
-import { configExceptionHandler } from "./commands/configExceptionHandler";
+import { configExceptionHandler } from "./common/commands/configExceptionHandler";
 import { seedTestData } from "./seedTestData";
 import { makeExceptionHadlerContextCmd } from "./ExceptionHandlerCmd/ExceptionHandlerCmd";
 

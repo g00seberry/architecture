@@ -1,6 +1,6 @@
-import { CoreCmd } from "../Core/CoreCmd";
-import { ExceptionHandlerFn } from "../IExceptionHandler/IExceptionHandler";
-import { ExceptionHandlerContextCmd } from "../ExceptionHandlerCmd";
+import { CoreCmd } from "../../Core/CoreCmd";
+import { ExceptionHandlerFn } from "../../IExceptionHandler/IExceptionHandler";
+import { ExceptionHandlerContextCmd } from "../../ExceptionHandlerCmd";
 import { CommandLog, CommandRepeat } from "./common";
 import { SimpleLogger } from "./common/CommandLog";
 

@@ -2,7 +2,7 @@ import {
   CommandMoveLinear,
   CommandProduceEntities,
   CommandRotateVelocity,
-} from "./commands";
+} from "./common/commands";
 import { CoreCmd } from "./Core/CoreCmd";
 import {
   FactoryMovableEntity,
