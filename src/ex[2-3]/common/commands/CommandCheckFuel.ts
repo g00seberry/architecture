@@ -16,23 +16,27 @@ export class CommandCheckFuel implements ICommand {
     if (!this.entity)
       throw makeExceptionCmd(
         "Unconsistent data. Can`t perform CommandCheckFuel command.",
-        ExceptionCmdType["unconsistent data"]
+        ExceptionCmdType["unconsistent data"],
+        this
       );
     if (!(this.entity instanceof WithFuelGameEntity))
       throw makeExceptionCmd(
         "Wrong entity type. Can`t perform CommandCheckFuel command.",
-        ExceptionCmdType["unconsistent data"]
+        ExceptionCmdType["unconsistent data"],
+        this
       );
     const { fuelTank } = this.entity;
     if (!fuelTank)
       throw makeExceptionCmd(
         "Wrong fuelTank",
-        ExceptionCmdType["unconsistent data"]
+        ExceptionCmdType["unconsistent data"],
+        this
       );
     if (fuelTank.getFuelLevel() === 0)
       throw makeExceptionCmd(
         "Fuel is expended",
-        ExceptionCmdType["fuel is expended"]
+        ExceptionCmdType["fuel is expended"],
+        this
       );
   }
 }

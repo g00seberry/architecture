@@ -9,7 +9,7 @@ export const enqueueLogOnFail =
   (core: CoreCmd): ExceptionHandlerFn =>
   (ctx) => {
     const { cmdQueue } = core.config;
-    cmdQueue.enqueue(new CommandLog(new SimpleLogger()).log(ctx.getCtx()));
+    cmdQueue.enqueue(new CommandLog(new SimpleLogger()).log(ctx));
   };
 
 // Реализовать обработчик исключения, который ставит в очередь Команду - повторитель команды, выбросившей исключение.
@@ -17,7 +17,7 @@ export const enqueueRepeatOnFail =
   (core: CoreCmd): ExceptionHandlerFn =>
   (ctx: ExceptionHandlerContextCmd) => {
     const { cmdQueue } = core.config;
-    cmdQueue.enqueue(new CommandRepeat().repeat(ctx.getCtx().cmd, core));
+    cmdQueue.enqueue(new CommandRepeat().repeat(ctx.cmd, core));
   };
 
 /**

@@ -16,8 +16,10 @@ export class SpaceshipFuelTankBurnStrategy implements IStrategy<number> {
     if (!this.tank)
       throw makeExceptionCmd(
         "Can`t execute SpaceshipFuelTankBurnStrategy",
-        ExceptionCmdType["unconsistent data"]
+        ExceptionCmdType["unconsistent data"],
+        this
       );
+
     const fuel = this.tank.getFuelLevel();
     if (fuel > 0) return fuel - 1;
     return fuel;

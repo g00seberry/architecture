@@ -22,7 +22,8 @@ export class CommandProduceEntities implements ICommand {
     if (!this.factory || !this.entityReg)
       throw makeExceptionCmd(
         "factory or entityReg is null. Can`t perform CommandProduceMovableEntities command.",
-        ExceptionCmdType["unconsistent data"]
+        ExceptionCmdType["unconsistent data"],
+        this
       );
 
     this.factory.produce().forEach((e) => this.entityReg.registerEntity(e));

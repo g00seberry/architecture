@@ -9,13 +9,11 @@ import {
 } from "../common/commands/exceptionHandlers";
 import { CoreCmd, getCoreCmd } from "../Core/CoreCmd";
 import { MovableGameEntity, getEntityRegister } from "../Entity/";
-import {
-  getExceptionHadlerCmd,
-  makeExceptionHandlerCmdKey,
-} from "../ExceptionHandlerCmd";
+import { getExceptionHadlerCmd } from "../ExceptionHandlerCmd";
 import {
   ExceptionCmdType,
   makeExceptionCmd,
+  makeExceptionCmdKey,
 } from "../ExceptionHandlerCmd/ExceptionCmd";
 import { makeExceptionHadlerContextCmd } from "../ExceptionHandlerCmd/ExceptionHandlerCmd";
 import { Vector2 } from "../Core/IVector";
@@ -23,7 +21,7 @@ import { VelocityVec } from "../Core/IVelocity";
 
 class CmdWithError implements ICommand {
   execute() {
-    throw makeExceptionCmd("test", ExceptionCmdType["unconsistent data"]);
+    throw makeExceptionCmd("test", ExceptionCmdType["unconsistent data"], this);
   }
 }
 
@@ -55,10 +53,11 @@ test("Реализовать Команду, которая записывает
 
 test("Реализовать обработчик исключения, который ставит Команду, пишущую в лог в очередь Команд.", async () => {
   const core = await getInitedCore();
+  const cmd = new CommandLog(new SimpleLogger());
   enqueueLogOnFail(core)(
     makeExceptionHadlerContextCmd(
-      new CommandLog(new SimpleLogger()),
-      makeExceptionCmd("test", ExceptionCmdType["unconsistent data"])
+      cmd,
+      makeExceptionCmd("test", ExceptionCmdType["unconsistent data"], cmd)
     )
   );
   expect(core.config.cmdQueue.isEmpty()).toEqual(false);
@@ -68,7 +67,7 @@ test("Реализовать Команду, которая повторяет �
   const core = await getInitedCore();
   const { cmdQueue, entityRegister, cmdExceptionHandler } = core.config;
   cmdExceptionHandler.register(
-    makeExceptionHandlerCmdKey(
+    makeExceptionCmdKey(
       CmdWithError.name,
       ExceptionCmdType["unconsistent data"]
     ),
@@ -93,10 +92,11 @@ test("Реализовать Команду, которая повторяет �
 
 test("Реализовать обработчик исключения, который ставит в очередь Команду - повторитель команды, выбросившей исключение.", async () => {
   const core = await getInitedCore();
+  const cmd = new CommandLog(new SimpleLogger());
   enqueueRepeatOnFail(core)(
     makeExceptionHadlerContextCmd(
-      new CommandLog(new SimpleLogger()),
-      makeExceptionCmd("test", ExceptionCmdType["unconsistent data"])
+      cmd,
+      makeExceptionCmd("test", ExceptionCmdType["unconsistent data"], cmd)
     )
   );
   expect(core.config.cmdQueue.isEmpty()).toEqual(false);
@@ -106,7 +106,7 @@ test("При первом выбросе исключения повторить
   const core = await getInitedCore();
   const { cmdQueue, entityRegister, cmdExceptionHandler } = core.config;
   cmdExceptionHandler.register(
-    makeExceptionHandlerCmdKey(
+    makeExceptionCmdKey(
       CmdWithError.name,
       ExceptionCmdType["unconsistent data"]
     ),
@@ -139,7 +139,7 @@ test("Реализовать стратегию обработки исключ�
   const core = await getInitedCore();
   const { cmdQueue, cmdExceptionHandler } = core.config;
   cmdExceptionHandler.register(
-    makeExceptionHandlerCmdKey(
+    makeExceptionCmdKey(
       CmdWithError.name,
       ExceptionCmdType["unconsistent data"]
     ),
