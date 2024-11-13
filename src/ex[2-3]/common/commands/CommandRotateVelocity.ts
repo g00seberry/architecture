@@ -24,19 +24,25 @@ export class CommandRotateVelocity implements ICommand {
         this
       );
 
-    if (!(this.entity instanceof RotatableGameEntity))
+    if (
+      !("rotationVelocity" in this.entity) ||
+      !("velocity" in this.entity) ||
+      !("setVelocity" in this.entity)
+    )
       throw makeExceptionCmd(
         "Wrong entity type. Can`t perform CommandRotateVelocity command.",
         ExceptionCmdType["unconsistent data"],
         this
       );
-    const { rotationVelocity: rotation, velocity } = this.entity;
+
+    const ent = this.entity as unknown as RotatableGameEntity;
+    const { rotationVelocity: rotation, velocity } = ent;
     if (!(rotation && velocity))
       throw makeExceptionCmd(
         "Wrong rotation or velocity.",
         ExceptionCmdType["unconsistent data"],
         this
       );
-    this.entity.setVelocity(rotation.rotate(velocity));
+    ent.setVelocity(rotation.rotate(velocity));
   }
 }

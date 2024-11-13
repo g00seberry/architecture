@@ -18,14 +18,19 @@ export class CommandMoveLinear implements ICommand {
         ExceptionCmdType["unconsistent data"],
         this
       );
-    if (!(this.entity instanceof MovableGameEntity))
+
+    if (
+      !("location" in this.entity) ||
+      !("velocity" in this.entity) ||
+      !("setLocation" in this.entity)
+    )
       throw makeExceptionCmd(
         "Wrong entity type. Can`t perform CommandMoveLinear command.",
         ExceptionCmdType["unconsistent data"],
         this
       );
-
-    const { location, velocity } = this.entity;
+    const ent = this.entity as MovableGameEntity;
+    const { location, velocity } = ent;
     if (!(location && velocity))
       throw makeExceptionCmd(
         "Wrong location or velocity.",
@@ -33,6 +38,6 @@ export class CommandMoveLinear implements ICommand {
         this
       );
 
-    this.entity.setLocation(location.add(velocity.getVelocityVector()));
+    ent.setLocation(location.add(velocity.getVelocityVector()));
   }
 }

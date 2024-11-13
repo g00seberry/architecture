@@ -71,13 +71,14 @@ test("Написаны тесты к BurnFuelComamnd: ошибка, если б�
 
 test("Реализована макрокоманда движения по прямой с расходом топлива и тесты к ней", async () => {
   getInitedCore().then((core) => {
-    const { cmdExceptionHandler, cmdQueue, entityRegister } = core.config;
+    const { cmdQueue, entityRegister } = core.config;
     seedEx4(core);
     gameLoopStep(core);
     const simpleSpaceShip = entityRegister.list()[0] as SpaceShip;
-    console.log(cmdQueue.isEmpty());
     expect(
-      simpleSpaceShip.fuelTank.getFuelLevel() === 9 && cmdQueue.isEmpty()
-    ).toBe(false);
+      simpleSpaceShip.fuelTank.getFuelLevel() === 9 &&
+        simpleSpaceShip.location.coords[0] === 1 &&
+        cmdQueue.isEmpty()
+    ).toBe(true);
   });
 });
