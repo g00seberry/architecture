@@ -3,7 +3,7 @@ import { getCommandQueue } from "./Core/Command/CommandQueue";
 import { CoreCmd, getCoreCmd } from "./Core/CoreCmd";
 import { getEntityRegister } from "./Entity/GameEntityRegister";
 import { configExceptionHandler } from "./common/commands/configExceptionHandler";
-import { seedTestData } from "./seeds/seedEx3";
+import { seedEx3 } from "./seeds/seedEx3";
 import { makeExceptionHadlerContextCmd } from "./ExceptionHandlerCmd/ExceptionHandlerCmd";
 
 const gameLoop = (core: CoreCmd) => {
@@ -27,6 +27,6 @@ core
   })
   .then(() => {
     configExceptionHandler(core);
-    seedTestData(core);
+    seedEx3(core);
     gameLoop(core);
   });

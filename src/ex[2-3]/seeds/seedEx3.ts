@@ -16,7 +16,7 @@ import {
 import { Vector2 } from "../Core/IVector";
 import { VelocityVec, Velocity2D } from "../Core/IVelocity";
 
-export const seedTestData = (core: CoreCmd) => {
+export const seedEx3 = (core: CoreCmd) => {
   const { cmdQueue, entityRegister } = core.config;
   const fctyMovableEntities = new FactoryMovableEntity([
     [new Vector2([12, 5]), new VelocityVec(new Vector2([-7, 3]))],

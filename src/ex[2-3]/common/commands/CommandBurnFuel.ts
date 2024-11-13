@@ -4,7 +4,7 @@ import {
   ExceptionCmdType,
   makeExceptionCmd,
 } from "../../ExceptionHandlerCmd/ExceptionCmd";
-import { WithFuelGameEntity } from "../../Entity/WithFuelGameEntity";
+import { IFuelTank } from "../../Entity/common/IFuelTank";
 
 export class CommandBurnFuel implements ICommand {
   entity: GameEntity | null = null;
@@ -19,13 +19,13 @@ export class CommandBurnFuel implements ICommand {
         ExceptionCmdType["unconsistent data"],
         this
       );
-    if (!(this.entity instanceof WithFuelGameEntity))
+    if (!("fuelTank" in this.entity))
       throw makeExceptionCmd(
         "Wrong entity type. Can`t perform CommandBurnFuel command.",
         ExceptionCmdType["unconsistent data"],
         this
       );
-    const { fuelTank } = this.entity;
+    const fuelTank = this.entity.fuelTank as IFuelTank;
     if (!fuelTank)
       throw makeExceptionCmd(
         "Wrong fuelTank",

@@ -7,10 +7,8 @@ import {
 
 export class SpaceshipFuelTankBurnStrategy implements IStrategy<number> {
   tank: IFuelTank;
-  bind(tank: IFuelTank): number {
-    const fuel = tank.getFuelLevel();
-    if (fuel > 0) return fuel - 1;
-    return fuel;
+  bind(tank: IFuelTank) {
+    this.tank = tank;
   }
   execute(): number {
     if (!this.tank)

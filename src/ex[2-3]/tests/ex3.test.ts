@@ -18,32 +18,13 @@ import {
 import { makeExceptionHadlerContextCmd } from "../ExceptionHandlerCmd/ExceptionHandlerCmd";
 import { Vector2 } from "../Core/IVector";
 import { VelocityVec } from "../Core/IVelocity";
+import { gameLoopStep, getInitedCore } from "./common";
 
 class CmdWithError implements ICommand {
   execute() {
     throw makeExceptionCmd("test", ExceptionCmdType["unconsistent data"], this);
   }
 }
-
-const gameLoopStep = (core: CoreCmd) => {
-  const { cmdExceptionHandler, cmdQueue } = core.config;
-  const cmd = cmdQueue.dequeue();
-  try {
-    cmd.execute();
-  } catch (error) {
-    cmdExceptionHandler.handle(makeExceptionHadlerContextCmd(cmd, error));
-  }
-};
-
-const getInitedCore = async () => {
-  const core = getCoreCmd();
-  await core.init({
-    cmdQueue: getCommandQueue(),
-    cmdExceptionHandler: getExceptionHadlerCmd(),
-    entityRegister: getEntityRegister(),
-  });
-  return core;
-};
 
 test("Реализовать Команду, которая записывает информацию о выброшенном исключении в лог.", () => {
   const logCmd = new CommandLog(new SimpleLogger());

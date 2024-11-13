@@ -12,8 +12,11 @@ import { SpaceShip } from "../Entity/SpaceShip/SpaceShip";
 
 export const seedEx4 = (core: CoreCmd) => {
   const { cmdQueue, entityRegister } = core.config;
+  const strat = new SpaceshipFuelTankBurnStrategy();
+  const tank = new SpaceshipFuelTank(10, strat);
+  strat.bind(tank);
   const simpleSpaceShip = new SpaceShip(
-    new SpaceshipFuelTank(10, new SpaceshipFuelTankBurnStrategy()),
+    tank,
     new Vector2([0, 0]),
     new RotationVelocityVec([0]),
     new VelocityVec(new Vector2([1, 0]))
