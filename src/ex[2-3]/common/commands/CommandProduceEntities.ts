@@ -1,11 +1,11 @@
-import { GameEntity } from "../Entity/GameEntity";
-import { ICommand } from "../Command";
-import { IGameEntityRegister } from "../Entity/GameEntityRegister";
-import { IFactory } from "../Entity/factories";
+import { GameEntity } from "../../Entity/GameEntity";
+import { ICommand } from "../../Core/Command";
+import { IGameEntityRegister } from "../../Entity/GameEntityRegister";
+import { IFactory } from "../../Entity/factories";
 import {
   ExceptionCmdType,
   makeExceptionCmd,
-} from "../ExceptionHandlerCmd/ExceptionCmd";
+} from "../../ExceptionHandlerCmd/ExceptionCmd";
 
 export class CommandProduceEntities implements ICommand {
   factory: IFactory<GameEntity[]> | null = null;
@@ -22,7 +22,8 @@ export class CommandProduceEntities implements ICommand {
     if (!this.factory || !this.entityReg)
       throw makeExceptionCmd(
         "factory or entityReg is null. Can`t perform CommandProduceMovableEntities command.",
-        ExceptionCmdType["unconsistent data"]
+        ExceptionCmdType["unconsistent data"],
+        this
       );
 
     this.factory.produce().forEach((e) => this.entityReg.registerEntity(e));

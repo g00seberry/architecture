@@ -1,4 +1,4 @@
-import { IQueue, ICommand } from "../Command";
+import { IQueue, ICommand } from "./Command";
 import { IGameEntityRegister } from "../Entity/GameEntityRegister";
 import { IExceptionHandler } from "../IExceptionHandler";
 

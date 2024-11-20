@@ -1,4 +1,4 @@
-import { ICommand } from "../../Command/ICommand";
+import { ICommand } from "../../../Core/Command/ICommand";
 
 interface ILogger {
   log(data: unknown): void;

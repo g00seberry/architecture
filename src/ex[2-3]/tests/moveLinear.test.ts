@@ -1,7 +1,7 @@
-import { CommandMoveLinear } from "../commands";
-import { MovableGameEntity } from "../Entity/GameEntity";
-import { Vector2 } from "../interfaces/IVector";
-import { VelocityVec } from "../interfaces/IVelocity";
+import { CommandMoveLinear } from "../common/commands";
+import { Vector2 } from "../Core/IVector";
+import { VelocityVec } from "../Core/IVelocity";
+import { MovableGameEntity } from "../Entity";
 
 const moveCommand = new CommandMoveLinear();
 test("Для объекта, находящегося в точке (12, 5) и движущегося со скоростью (-7, 3) движение меняет положение объекта на (5, 8)", () => {

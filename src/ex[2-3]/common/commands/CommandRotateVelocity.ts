@@ -1,9 +1,9 @@
-import { GameEntity, RotatableGameEntity } from "../Entity/GameEntity";
-import { ICommand } from "../Command";
+import { GameEntity, RotatableGameEntity } from "../../Entity";
+import { ICommand } from "../../Core/Command";
 import {
   ExceptionCmdType,
   makeExceptionCmd,
-} from "../ExceptionHandlerCmd/ExceptionCmd";
+} from "../../ExceptionHandlerCmd/ExceptionCmd";
 
 /**
  * пока что объект представлен в виде положения в пространстве и скорости,
@@ -20,16 +20,29 @@ export class CommandRotateVelocity implements ICommand {
     if (!this.entity)
       throw makeExceptionCmd(
         "Entity is empty. Can`t perform CommandRotateVelocity command.",
-        ExceptionCmdType["unconsistent data"]
+        ExceptionCmdType["unconsistent data"],
+        this
       );
 
-    if (!(this.entity instanceof RotatableGameEntity))
+    if (
+      !("rotationVelocity" in this.entity) ||
+      !("velocity" in this.entity) ||
+      !("setVelocity" in this.entity)
+    )
       throw makeExceptionCmd(
         "Wrong entity type. Can`t perform CommandRotateVelocity command.",
-        ExceptionCmdType["unconsistent data"]
+        ExceptionCmdType["unconsistent data"],
+        this
       );
-    const { rotationVelocity: rotation, velocity } = this.entity;
-    if (!(rotation && velocity)) throw new Error("Wrong rotation or velocity.");
-    this.entity.setVelocity(rotation.rotate(velocity));
+
+    const ent = this.entity as unknown as RotatableGameEntity;
+    const { rotationVelocity: rotation, velocity } = ent;
+    if (!(rotation && velocity))
+      throw makeExceptionCmd(
+        "Wrong rotation or velocity.",
+        ExceptionCmdType["unconsistent data"],
+        this
+      );
+    ent.setVelocity(rotation.rotate(velocity));
   }
 }

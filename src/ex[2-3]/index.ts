@@ -1,10 +1,11 @@
 import { getExceptionHadlerCmd } from "./ExceptionHandlerCmd";
-import { getCommandQueue } from "./Command/CommandQueue";
+import { getCommandQueue } from "./Core/Command/CommandQueue";
 import { CoreCmd, getCoreCmd } from "./Core/CoreCmd";
 import { getEntityRegister } from "./Entity/GameEntityRegister";
-import { configExceptionHandler } from "./commands/configExceptionHandler";
-import { seedTestData } from "./seedTestData";
+import { configExceptionHandler } from "./common/commands/configExceptionHandler";
+import { seedEx3 } from "./seeds/seedEx3";
 import { makeExceptionHadlerContextCmd } from "./ExceptionHandlerCmd/ExceptionHandlerCmd";
+import { seedEx4 } from "./seeds/seedEx4";
 
 const gameLoop = (core: CoreCmd) => {
   const { cmdExceptionHandler, cmdQueue } = core.config;
@@ -27,6 +28,6 @@ core
   })
   .then(() => {
     configExceptionHandler(core);
-    seedTestData(core);
+    seedEx4(core);
     gameLoop(core);
   });

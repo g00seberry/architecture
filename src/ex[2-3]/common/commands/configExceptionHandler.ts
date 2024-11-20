@@ -1,6 +1,8 @@
-import { CoreCmd } from "../Core/CoreCmd";
-import { ExceptionCmdType } from "../ExceptionHandlerCmd/ExceptionCmd";
-import { makeExceptionHandlerCmdKey } from "../ExceptionHandlerCmd/getExceptionHandlerCmd";
+import { CoreCmd } from "../../Core/CoreCmd";
+import {
+  ExceptionCmdType,
+  makeExceptionCmdKey,
+} from "../../ExceptionHandlerCmd/ExceptionCmd";
 import { CommandMoveLinear } from "./CommandMoveLinear";
 import { CommandProduceEntities } from "./CommandProduceEntities";
 import { CommandRotateVelocity } from "./CommandRotateVelocity";
@@ -10,21 +12,21 @@ export const configExceptionHandler = (core: CoreCmd) => {
   const { cmdExceptionHandler } = core.config;
 
   cmdExceptionHandler.register(
-    makeExceptionHandlerCmdKey(
+    makeExceptionCmdKey(
       CommandMoveLinear.name,
       ExceptionCmdType["unconsistent data"]
     ),
     enqueueLogOnFail(core)
   );
   cmdExceptionHandler.register(
-    makeExceptionHandlerCmdKey(
+    makeExceptionCmdKey(
       CommandRotateVelocity.name,
       ExceptionCmdType["unconsistent data"]
     ),
     trySomeTimesAndLog(core, 1)
   );
   cmdExceptionHandler.register(
-    makeExceptionHandlerCmdKey(
+    makeExceptionCmdKey(
       CommandProduceEntities.name,
       ExceptionCmdType["unconsistent data"]
     ),

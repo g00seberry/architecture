@@ -2,21 +2,21 @@ import {
   CommandMoveLinear,
   CommandProduceEntities,
   CommandRotateVelocity,
-} from "./commands";
-import { CoreCmd } from "./Core/CoreCmd";
+} from "../common/commands";
+import { CoreCmd } from "../Core/CoreCmd";
 import {
   FactoryMovableEntity,
   FactoryRotatableEntity,
-} from "./Entity/factories";
-import { MovableGameEntity, RotatableGameEntity } from "./Entity/GameEntity";
+} from "../Entity/factories";
+import { MovableGameEntity, RotatableGameEntity } from "../Entity";
 import {
   RotationVelocity2D,
   RotationVelocityVec,
-} from "./interfaces/IRotationVelocity";
-import { Vector2 } from "./interfaces/IVector";
-import { Velocity2D, VelocityVec } from "./interfaces/IVelocity";
+} from "../Core/IRotationVelocity";
+import { Vector2 } from "../Core/IVector";
+import { VelocityVec, Velocity2D } from "../Core/IVelocity";
 
-export const seedTestData = (core: CoreCmd) => {
+export const seedEx3 = (core: CoreCmd) => {
   const { cmdQueue, entityRegister } = core.config;
   const fctyMovableEntities = new FactoryMovableEntity([
     [new Vector2([12, 5]), new VelocityVec(new Vector2([-7, 3]))],

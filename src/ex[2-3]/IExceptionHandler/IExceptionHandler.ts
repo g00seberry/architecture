@@ -1,7 +1,7 @@
+import { IExceptionBase } from "./IExceptionBase";
+
 export interface IExceptionHandlerContext {
-  err: Error;
-  getCtx(): unknown;
-  getKey(): string;
+  err: IExceptionBase;
 }
 export type ExceptionHandlerFn = (ctx: IExceptionHandlerContext) => void;
 export interface IExceptionHandler {
