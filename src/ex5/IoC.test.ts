@@ -1,5 +1,5 @@
-import { ICommand } from "../ex[2-3]/Core/Command";
-import { IStrategy } from "../ex[2-3]/Core/Strategy/IStrategy";
+import { ICommand } from "../ex[2-4]/Core/Command";
+import { IStrategy } from "../ex[2-4]/Core/Strategy/IStrategy";
 import { CommandIoCBootstrap, IoC } from "./IoC";
 import { IoCDependencyContainer } from "./IoCDependencyContainer";
 import { IoCResolveStrategyStd } from "./IoCResolveStrategyStd";
