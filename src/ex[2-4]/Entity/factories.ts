@@ -1,4 +1,4 @@
-import { MovableGameEntity, RotatableGameEntity } from "./";
+import { MovableGameEntity, RotatableGameEntity } from ".";
 
 export interface IFactory<T> {
   produce(): T;

@@ -1,4 +1,4 @@
-import { ICommand } from "../ex[2-3]/Core/Command";
+import { ICommand } from "../ex[2-4]/Core/Command";
 import { StrategyScopeNew } from "./operations/StrategyScopeNew";
 import { IContainer, IoCDependencyFn, IoCScopeContainer } from "./types";
 import { StrategyScopeGet } from "./operations/StrategyScopeGet";

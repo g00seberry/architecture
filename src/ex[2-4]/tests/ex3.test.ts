@@ -8,7 +8,7 @@ import {
   trySomeTimesAndLog,
 } from "../common/commands/exceptionHandlers";
 import { CoreCmd, getCoreCmd } from "../Core/CoreCmd";
-import { MovableGameEntity, getEntityRegister } from "../Entity/";
+import { MovableGameEntity, getEntityRegister } from "../Entity";
 import { getExceptionHadlerCmd } from "../ExceptionHandlerCmd";
 import {
   ExceptionCmdType,
