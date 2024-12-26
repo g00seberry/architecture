@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FactoryRotatableEntity = exports.FactoryMovableEntity = exports.RotatableGameEntity = exports.MovableGameEntity = exports.getEntityRegister = exports.GameEntityRegisterList = void 0;
+var GameEntityRegister_1 = require("./GameEntityRegister");
+Object.defineProperty(exports, "GameEntityRegisterList", { enumerable: true, get: function () { return GameEntityRegister_1.GameEntityRegisterList; } });
+Object.defineProperty(exports, "getEntityRegister", { enumerable: true, get: function () { return GameEntityRegister_1.getEntityRegister; } });
+var MovableGameEntity_1 = require("./MovableGameEntity");
+Object.defineProperty(exports, "MovableGameEntity", { enumerable: true, get: function () { return MovableGameEntity_1.MovableGameEntity; } });
+var RotatableGameEntity_1 = require("./RotatableGameEntity");
+Object.defineProperty(exports, "RotatableGameEntity", { enumerable: true, get: function () { return RotatableGameEntity_1.RotatableGameEntity; } });
+var factories_1 = require("./factories");
+Object.defineProperty(exports, "FactoryMovableEntity", { enumerable: true, get: function () { return factories_1.FactoryMovableEntity; } });
+Object.defineProperty(exports, "FactoryRotatableEntity", { enumerable: true, get: function () { return factories_1.FactoryRotatableEntity; } });
